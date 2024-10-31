@@ -56,7 +56,7 @@ class api_utils:
         return match_list
 
     def get_match_info(self,match_id):
-        self.requst_timer()
+        self.request_timer()
         url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{match_id}"
         response = requests.get(url, headers=self.REQUEST_HEADERS)
         match_info = response.json()
@@ -68,3 +68,21 @@ class api_utils:
         response = requests.get(url, headers=self.REQUEST_HEADERS)
         match_timeline = response.json()
         return match_timeline
+    
+    def get_champion_info(self):
+        url ="https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/champion.json"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+        else:
+            print(f"요청 실패: {response.status_code}")
+        return data
+    
+    def get_item_info(self):
+        url ="https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/item.json"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+        else:
+            print(f"요청 실패: {response.status_code}")
+        return data
